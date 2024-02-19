@@ -1,0 +1,22 @@
+{
+    "name": "faizanakram99/find-vulnerabilities",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "ext-fileinfo": "*",
+        "doctrine/dbal": "^4.0",
+        "symfony/dotenv": "^7.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Gounsch\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Faizan Akram",
+            "email": "hello@faizanakram.me"
+        }
+    ]
+}
