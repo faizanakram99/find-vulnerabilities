@@ -12,6 +12,12 @@
     <div class="mb-3">
         <label for="file" class="form-label">File</label>
         <input type="file" class="form-control" id="file" name="file">
+
+        <?php if (isset($error)): ?>
+            <div class="invalid-feedback" style="display: block">
+                <?= $error; ?>
+            </div>
+        <?php endif; ?>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

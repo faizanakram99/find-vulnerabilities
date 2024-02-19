@@ -8,6 +8,8 @@ use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
+error_reporting(E_ALL);
+
 session_start();
 
 $_GET['action'] ??= 'index';

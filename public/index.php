@@ -14,13 +14,22 @@ if ('POST' === strtoupper($_SERVER['REQUEST_METHOD'])) {
             break; // break isn't technically needed, but doesn't hurt either
         case 'upload':
             $_FILES['file']['name'] = $_POST['filename'] ?: $_FILES['file']['name'];
-            Controller::uploadFile($app['files'], $_FILES['file']);
+
+            try {
+                Controller::uploadFile($app['files'], $_FILES['file']);
+            } catch (\InvalidArgumentException $exception) {
+                $_GET['action'] = 'edit';
+                $_GET['error'] = $exception->getMessage();
+            }
+
             break; // break isn't technically needed, but doesn't hurt either
         case 'delete':
             Controller::deleteFile($app['files'], $_POST['filename']);
     };
 
-    Controller::home();
+    if (!isset($_GET['error'])) {
+        Controller::home();
+    }
 }
 
 if ('preview' === $_GET['action']) {

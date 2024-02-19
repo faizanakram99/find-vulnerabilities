@@ -11,8 +11,15 @@ class Controller
         exit();
     }
 
+    /**
+     * @throws \InvalidArgumentException
+     */
     public static function uploadFile(Files $files, array $uploadedFile): void
     {
+        if ($uploadedFile['size'] > 10000000) {
+            throw new \InvalidArgumentException('File size is greater than 10 MB. Please upload a smaller file.');
+        }
+
         $files->add($uploadedFile['name'], file_get_contents($uploadedFile['tmp_name']));
     }
 

@@ -40,7 +40,9 @@ class Files
             return [];
         }
 
-        return $this->connection->fetchFirstColumn('SELECT filename from files where user = :user', ['user' => $this->user]);
+        return $this->connection->fetchFirstColumn('SELECT filename from files where user = :user', [
+            'user' => $this->user,
+        ]);
     }
 
     public function get(string $filename): string
@@ -49,7 +51,10 @@ class Files
             return '';
         }
 
-        return (string) $this->connection->fetchOne('SELECT data from files where filename = :name', ['name' => $filename]);
+        return (string) $this->connection->fetchOne('SELECT data from files where filename = :name AND user = :user', [
+            'name' => $filename,
+            'user' => $this->user,
+        ]);
     }
 
     public function add(string $filename, string $data): void
@@ -65,10 +70,10 @@ class Files
 
     public function delete(string $filename): void
     {
-        if (null === $this->user) {
+        if (null === $user = $this->user) {
             return;
         }
 
-        $this->connection->delete('files', compact('filename'));
+        $this->connection->delete('files', compact('filename', 'user'));
     }
 }
