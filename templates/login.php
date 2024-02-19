@@ -6,7 +6,7 @@
             <option selected>Select a user</option>
             <option>eena</option>
             <option>meena</option>
-            <option>deena</option>
+            <option>deeka</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
